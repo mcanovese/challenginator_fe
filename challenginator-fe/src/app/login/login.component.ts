@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService} from "../_services/auth.service";
 import {TokenStorageService} from "../_services/token-storage.service";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
+
 export class LoginComponent implements OnInit {
 
   form: any = {
@@ -41,8 +45,9 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       err => {
-        this.errorMessage = err.error.message();
         this.isLoginFailed = true;
+        this.errorMessage = "problems with auth provider";
+        this.errorMessage = err.error.message();
       }
     );
   }

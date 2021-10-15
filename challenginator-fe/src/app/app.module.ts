@@ -12,6 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChallengeListComponent } from './dashboard/challenge-list/challenge-list.component';
+import { ChallengeItemComponent } from './dashboard/challenge-list/challenge-item/challenge-item.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    DashboardComponent,
+    ChallengeListComponent,
+    ChallengeItemComponent
   ],
   imports: [
     BrowserModule,
