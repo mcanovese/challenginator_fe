@@ -16,7 +16,7 @@
     </div>
 
     <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'ACCEPTED'">
-      <button type="button" class="btn btn-primary">Visualizza</button><br>
+      <button type="button" class="btn btn-primary" [routerLink]="'details'">Visualizza</button><br>
       <button type="button" class="btn btn-primary" (click)="giveUp()">Arrenditi</button><br>
       <button type="button" class="btn btn-primary" (click)="completeChallenge()" >Ho finito</button><br>
     </div>
@@ -44,7 +44,7 @@
       </div>
 
     <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'ACCEPTED'">
-      <button type="button" class="btn btn-primary">Visualizza</button>
+      <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id">Visualizza</button>
     </div>
 
 

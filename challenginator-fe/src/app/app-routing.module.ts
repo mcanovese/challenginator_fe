@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'user', component: ProfileComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'insert', component: InsertComponent},
-  {path: 'details', component: DetailsComponent}
+  {path: 'details/:challengeId', component: DetailsComponent}
   ];
 
 @NgModule({
