@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChallengeListComponent } from './dashboard/challenge-list/challenge-list.component';
 import { ChallengeItemComponent } from './dashboard/challenge-list/challenge-item/challenge-item.component';
+import { InsertComponent } from './insert/insert.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,15 @@ import { ChallengeItemComponent } from './dashboard/challenge-list/challenge-ite
     ProfileComponent,
     DashboardComponent,
     ChallengeListComponent,
-    ChallengeItemComponent
+    ChallengeItemComponent,
+    InsertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

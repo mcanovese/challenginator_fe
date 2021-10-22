@@ -1,8 +1,8 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-import {TokenStorageService} from "../../_services/token-storage.service";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {newArray} from "@angular/compiler/src/util";
+import {Component, Injectable, Input, OnInit} from '@angular/core';
+import {Challenge} from "../../model/challenge.model";
+import {ChallengeService} from "../../service/challenge.service";
+import {waitForAsync} from "@angular/core/testing";
+
 
 @Component({
   selector: 'app-challenge-list',
@@ -10,39 +10,46 @@ import {newArray} from "@angular/compiler/src/util";
   styleUrls: ['./challenge-list.component.css']
 })
 
+  export class ChallengeListComponent implements OnInit {
 
-export class ChallengeListComponent implements OnInit {
-   sub: any[] = [];
+    @Input() challengeType: string | undefined;
+    userId: string|null = window.sessionStorage.getItem("user-id");
 
-  constructor(private httpClient: HttpClient) {}
+    challengeList:Challenge[] = [];
 
 
+  constructor(private challengeService: ChallengeService) {}
 
 
   ngOnInit(): void {
-     this.getChallenge().subscribe(
-      data => {
-        this.sub = data;
-        console.log(this.sub);
-      },
-      err => {
-        console.log("error challenge");
-      }
-    );
-
-
-
-  }
-
-  ngAfterViewInit(): void {
-
+    if(this.challengeType == 'incoming')   this.loadChallengeIncoming();
+    if(this.challengeType == 'outcoming') this.loadChallengeOutcoming();
+    if(this.challengeType == 'evaluate')  this.loadChallengeToEvaluate();
   }
 
 
+  loadChallengeIncoming() {
+    this.challengeService.getChallenge().subscribe((challenges) =>{
+      this.challengeList = challenges.filter(element=>
+        element.challenger.toString() != this.userId);
+    })
+  }
 
- getChallenge(): Observable<any> {
- return this.httpClient.get('http://localhost:8081/challenge');
+  loadChallengeOutcoming() {
+    this.challengeService.getChallenge().subscribe((challenges) =>{
+      this.challengeList = challenges.filter(element=>
+        element.challenger.toString() == this.userId);
+    })
+  }
 
-}
+
+  loadChallengeToEvaluate() {
+    this.challengeService.getChallengeToEvaluate().subscribe((challenges) =>{
+      this.challengeList = challenges.filter(element=>
+      element.challenger.toString() != this.userId);
+    })
+  }
+
+
 
 }

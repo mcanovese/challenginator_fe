@@ -25,6 +25,11 @@ export class AuthService {
 
     }
 
+    authCheck(jwt: string): Observable<any>{
+    return this.http.post(AUTH_API+'authcheck',{
+      jwt}, httOptions);
+  }
+
 
 
 }

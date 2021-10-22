@@ -1,7 +1,10 @@
 
 <div class="row row-cols-3 " >
-  <div *ngFor="let challenge of sub">
-  <app-challenge-item [incomingdata] = challenge ></app-challenge-item>
+  <div *ngFor="let challenge of challengeList">
+    <div class="card border-success mb-3" style="max-width: 30rem;">
+  <app-challenge-item [challengeItem] = "challenge"  [challengeType]="challengeType">
+  </app-challenge-item>
+      </div>
   </div>
 </div>
 

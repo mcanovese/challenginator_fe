@@ -1,17 +1,100 @@
 <div class="col mb-4">
-<div class="card border-success mb-3" style="max-width: 30rem;">
-  <div class="card-header bg-transparent border-success">Sfida tra Marco e Antonio</div>
+
+  <div class="card-header bg-transparent border-success" >Sfida del {{challengeItem.timestamp_creation}} #ID {{challengeItem.id}}</div>
   <div class="card-body text-success">
-    <h5 class="card-title">Costruire 1000 aeroplanini di carta</h5>
-  {{data}}
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 class="card-title" >  {{ challengeItem.title }}</h5>
+
+    <p class="card-text">{{ challengeItem.description }}</p>
   </div>
   <div class="card-footer bg-transparent border-success">
-    <div class="d-grid gap-2 d-md-flex ">
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button type="button" class="btn btn-secondary">Secondary</button>
-      <button type="button" class="btn btn-success">Success</button>
+
+   <div *ngIf="challengeType=='incoming'">
+
+    <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'PENDING'">
+      <button type="button" class="btn btn-primary" (click)="acceptChallenge()">Accept</button>
+      <button type="button" class="btn btn-secondary" (click)="refuseChallenge()">Refuse</button>
     </div>
+
+    <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'ACCEPTED'">
+      <button type="button" class="btn btn-primary">View Details</button><br>
+      <button type="button" class="btn btn-primary" (click)="giveUp()">Give Up</button><br>
+      <button type="button" class="btn btn-primary" (click)="completeChallenge()" >Complete</button><br>
+    </div>
+
+     <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'EVALUATING'">
+       <p>EVALUATING</p>
+     </div>
+
+     <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'REFUSED'">
+       <p>REFUSED</p>
+     </div>
+
+     <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'TERMINATED'">
+       <p>TERMINATED</p>
+     </div>
+
+   </div>
+
+
+    <div *ngIf="challengeType=='outcoming'">
+
+      <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'PENDING'">
+        <button type="button" class="btn btn-primary">View Details</button>
+        <button type="button" class="btn btn-secondary">Delete</button>
+      </div>
+
+    <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'ACCEPTED'">
+      <button type="button" class="btn btn-primary">View Details</button>
+    </div>
+
+
+      <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'EVALUATING'
+                                            && challengeItem.evaluator.toString() == userId">
+
+        <button type="button" class="btn btn-primary">View Details</button>
+        <button type="button" class="btn btn-secondary" (click)="evaluateSuccess()">Set Success</button>
+        <button type="button" class="btn btn-secondary" (click)="evaluateFail()">Set Fail</button>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'REFUSED'">
+        <p>REFUSED</p>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'TERMINATED'">
+        <p>TERMINATED</p>
+        <p *ngIf="challengeItem.result == 'SUCCESS'">SUCCESS</p>
+        <p *ngIf="challengeItem.result == 'GIVEUP'">GIVEUP</p>
+        <p *ngIf="challengeItem.result == 'FAIL'">FAILED</p>
+      </div>
+
+    </div>
+
+
+    <div *ngIf="challengeType=='evaluate'">
+
+
+      <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'EVALUATING'">
+        <button type="button" class="btn btn-primary">View Details</button>
+        <button type="button" class="btn btn-secondary" (click)="evaluateSuccess()">Set Success</button>
+        <button type="button" class="btn btn-secondary" (click)="evaluateFail()">Set Fail</button>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'PENDING'">
+        <button type="button" class="btn btn-primary">View Details</button>
+        <p>Challenge still in progress</p>
+
+      </div>
+      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'TERMINATED'">
+        <p>TERMINATED</p>
+        <p *ngIf="challengeItem.result == 'SUCCESS'">SUCCESS</p>
+        <p *ngIf="challengeItem.result == 'GIVEUP'">GIVEUP</p>
+        <p *ngIf="challengeItem.result == 'FAIL'">FAILED</p>
+      </div>
+    </div>
+
+
+
+
+
   </div>
-</div>
 </div>

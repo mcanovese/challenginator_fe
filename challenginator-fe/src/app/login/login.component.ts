@@ -11,6 +11,7 @@ import {HttpHeaders} from "@angular/common/http";
 
 
 
+
 export class LoginComponent implements OnInit {
 
   form: any = {
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   jwt: string | null = '';
+  userId: string | null = '';
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
       data => {
 
         this.tokenStorage.saveToken(data.jwt);
+        this.tokenStorage.saveUserId(data.userId)
         this.tokenStorage.saveUser(data);
 
         this.isLoginFailed = false;

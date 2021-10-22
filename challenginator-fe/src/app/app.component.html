@@ -1,6 +1,6 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Challenginator</a>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FB6107;">
+    <a href="#" class="navbar-brand ml-auto ">Challenginator</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
@@ -9,11 +9,17 @@
         <a href="/dasbhoard" class="nav-link" routerLink="dashboard">Dashboard </a>
       </li>
 
+      <li class="nav-item">
+        <a href="/insert" class="nav-link" *ngIf="isLoggedIn" routerLink="insert">Insert</a>
+      </li>
+
 
       <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>
     </ul>
+
+
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
@@ -33,8 +39,8 @@
       </li>
     </ul>
   </nav>
+  </div>
 
-  <div class="container-xl" >
+<div class="container">
     <router-outlet></router-outlet>
   </div>
-</div>
