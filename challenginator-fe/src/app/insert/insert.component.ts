@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import { ReactiveFormsModule} from "@angular/forms";
+import {ChallengeService} from "../service/challenge.service";
 
 @Component({
   selector: 'app-insert',
@@ -20,7 +21,7 @@ export class InsertComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor() { }
+  constructor(private challengeService: ChallengeService) { }
 
   ngOnInit(): void {
   }
@@ -29,10 +30,9 @@ export class InsertComponent implements OnInit {
 
     const {challenged,title,description,deadline} = this.form;
 
-    /*
-    const {challenged,title,description,deadline} = this.form;
+    console.log("submit");
 
-    this.authService.register(ch,name,surname,password).subscribe(
+    this.challengeService.insertChallenge(title,description,deadline,challenged).subscribe(
       data=>{
         console.log(data);
         this.isSuccessful = true;
@@ -45,7 +45,7 @@ export class InsertComponent implements OnInit {
       }
     );
 
-     */
+
   }
 
 

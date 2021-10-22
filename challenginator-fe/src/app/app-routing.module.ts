@@ -7,16 +7,16 @@ import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {InsertComponent} from "./insert/insert.component";
-
-
+import {DetailsComponent} from "./details/details.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'user', component: ProfileComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'insert', component: InsertComponent}
+  {path: 'insert', component: InsertComponent},
+  {path: 'details', component: DetailsComponent}
   ];
 
 @NgModule({

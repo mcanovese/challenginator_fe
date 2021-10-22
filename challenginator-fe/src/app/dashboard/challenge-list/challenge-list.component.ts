@@ -28,6 +28,14 @@ import {waitForAsync} from "@angular/core/testing";
   }
 
 
+  //utilizzato per il refresh
+  loadAllList() {
+    if (this.challengeType == 'incoming') this.loadChallengeIncoming();
+    if (this.challengeType == 'outcoming') this.loadChallengeOutcoming();
+    if (this.challengeType == 'evaluate') this.loadChallengeToEvaluate();
+  }
+
+
   loadChallengeIncoming() {
     this.challengeService.getChallenge().subscribe((challenges) =>{
       this.challengeList = challenges.filter(element=>
@@ -49,7 +57,6 @@ import {waitForAsync} from "@angular/core/testing";
       element.challenger.toString() != this.userId);
     })
   }
-
 
 
 }

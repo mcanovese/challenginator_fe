@@ -11,26 +11,26 @@
    <div *ngIf="challengeType=='incoming'">
 
     <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'PENDING'">
-      <button type="button" class="btn btn-primary" (click)="acceptChallenge()">Accept</button>
-      <button type="button" class="btn btn-secondary" (click)="refuseChallenge()">Refuse</button>
+      <button type="button" class="btn btn-primary" (click)="acceptChallenge()">Accetta</button>
+      <button type="button" class="btn btn-secondary" (click)="refuseChallenge()">Rifiuta</button>
     </div>
 
     <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'ACCEPTED'">
-      <button type="button" class="btn btn-primary">View Details</button><br>
-      <button type="button" class="btn btn-primary" (click)="giveUp()">Give Up</button><br>
-      <button type="button" class="btn btn-primary" (click)="completeChallenge()" >Complete</button><br>
+      <button type="button" class="btn btn-primary">Visualizza</button><br>
+      <button type="button" class="btn btn-primary" (click)="giveUp()">Arrenditi</button><br>
+      <button type="button" class="btn btn-primary" (click)="completeChallenge()" >Ho finito</button><br>
     </div>
 
      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'EVALUATING'">
-       <p>EVALUATING</p>
+       <p>VALUTAZIONE IN CORSO </p>
      </div>
 
      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'REFUSED'">
-       <p>REFUSED</p>
+       <p>RIFIUTATA</p>
      </div>
 
      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'TERMINATED'">
-       <p>TERMINATED</p>
+       <p>TERMINATA</p>
      </div>
 
    </div>
@@ -40,20 +40,30 @@
 
       <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'PENDING'">
         <button type="button" class="btn btn-primary">View Details</button>
-        <button type="button" class="btn btn-secondary">Delete</button>
+        <button type="button" class="btn btn-secondary" (click)="delete()">Cancella</button>
       </div>
 
     <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'ACCEPTED'">
-      <button type="button" class="btn btn-primary">View Details</button>
+      <button type="button" class="btn btn-primary">Visualizza</button>
     </div>
 
 
-      <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'EVALUATING'
-                                            && challengeItem.evaluator.toString() == userId">
+      <div  *ngIf=" challengeItem.status == 'EVALUATING'">
 
-        <button type="button" class="btn btn-primary">View Details</button>
-        <button type="button" class="btn btn-secondary" (click)="evaluateSuccess()">Set Success</button>
-        <button type="button" class="btn btn-secondary" (click)="evaluateFail()">Set Fail</button>
+        <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.evaluator.toString() == userId">
+        <button type="button" class="btn btn-primary">Visualizza</button>
+        <button type="button" class="btn btn-secondary" (click)="evaluateSuccess()">Successo</button>
+        <button type="button" class="btn btn-secondary" (click)="evaluateFail()">Fallimento</button>
+        </div>
+
+        <div *ngIf="challengeItem.evaluator.toString() != userId">
+          <button type="button" class="btn btn-primary">Visualizza</button>
+          Valutazione in corso
+        </div>
+
+
+
+
       </div>
 
       <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'REFUSED'">
@@ -61,10 +71,10 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'TERMINATED'">
-        <p>TERMINATED</p>
-        <p *ngIf="challengeItem.result == 'SUCCESS'">SUCCESS</p>
-        <p *ngIf="challengeItem.result == 'GIVEUP'">GIVEUP</p>
-        <p *ngIf="challengeItem.result == 'FAIL'">FAILED</p>
+        <p>TERMINATA</p>
+        <p *ngIf="challengeItem.result == 'SUCCESS'">CON SUCCESSO</p>
+        <p *ngIf="challengeItem.result == 'GIVEUP'">SFIDANTE ARRESO</p>
+        <p *ngIf="challengeItem.result == 'FAIL'"> CON FALLIMENTO</p>
       </div>
 
     </div>
@@ -75,26 +85,21 @@
 
       <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'EVALUATING'">
         <button type="button" class="btn btn-primary">View Details</button>
-        <button type="button" class="btn btn-secondary" (click)="evaluateSuccess()">Set Success</button>
-        <button type="button" class="btn btn-secondary" (click)="evaluateFail()">Set Fail</button>
+        <button type="button" class="btn btn-secondary" (click)="evaluateSuccess()">Successo</button>
+        <button type="button" class="btn btn-secondary" (click)="evaluateFail()">Fallimento</button>
       </div>
 
       <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'PENDING'">
-        <button type="button" class="btn btn-primary">View Details</button>
-        <p>Challenge still in progress</p>
+        <button type="button" class="btn btn-primary">Visualizza</button>
+        <p>Challenge ancora in corso</p>
 
       </div>
       <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'TERMINATED'">
         <p>TERMINATED</p>
-        <p *ngIf="challengeItem.result == 'SUCCESS'">SUCCESS</p>
-        <p *ngIf="challengeItem.result == 'GIVEUP'">GIVEUP</p>
-        <p *ngIf="challengeItem.result == 'FAIL'">FAILED</p>
+        <p *ngIf="challengeItem.result == 'SUCCESS'">CON SUCCESSO</p>
+        <p *ngIf="challengeItem.result == 'GIVEUP'">ARRESO</p>
+        <p *ngIf="challengeItem.result == 'FAIL'">CON FALLIMENTO</p>
       </div>
     </div>
-
-
-
-
-
   </div>
 </div>

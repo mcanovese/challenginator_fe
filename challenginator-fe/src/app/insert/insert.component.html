@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4 offset-md-4">
       <div class="login-form bg-light mt-4 p-4">
-        <h2>Insert Challenge</h2>
+        <h2>Inserimento Challenge</h2>
         <form
           *ngIf="!isSuccessful"
           name="form"
@@ -11,34 +11,34 @@
           novalidate
         >
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="challenged">Sfidato</label>
             <input
               type="text"
               class="form-control"
-              name="name"
-              [(ngModel)]="form.name"
+              name="challenged"
+              id="challenged"
+              [(ngModel)]="form.challenged"
               required
-              minlength="3"
-              maxlength="20"
-              #name="ngModel"
+              #challenged="ngModel"
             />
-            <div class="alert-danger" *ngIf="name.errors && f.submitted">
-              <div *ngIf="name.errors.name">Name is required</div>
-              <div *ngIf="name.errors.name">
-                Name must be at least 3 characters
-              </div>
-              <div *ngIf="name.errors.maxlength">
-                Username must be at most 20 characters
-              </div>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+            <div class="alert-danger" *ngIf="challenged.errors && f.submitted">
+              <div *ngIf="challenged.errors">Seleziona uno sfidante </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title">Titolo</label>
             <input
               type="text"
               class="form-control"
               name="title"
+              id="title"
               [(ngModel)]="form.title"
               required
               minlength="3"
@@ -46,54 +46,53 @@
               #title="ngModel"
             />
             <div class="alert-danger" *ngIf="title.errors && f.submitted">
-              <div *ngIf="form.title.errors.name">title is required</div>
+              <div *ngIf="title.errors">Inserisci un titolo</div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description">Descrizione</label>
             <input
               type="text"
               class="form-control"
               name="description"
+              id="description"
               [(ngModel)]="form.description"
               required
-              email
               #description="ngModel"
             />
             <div class="alert-danger" *ngIf="description.errors && f.submitted">
               <div *ngIf="description.errors">Description is required</div>
             </div>
           </div>
+
           <div class="form-group">
-            <label for="deadline">Deadline</label>
+            <label for="deadline">Termine</label>
             <input
               type="text"
               class="form-control"
               name="deadline"
+              id ="deadline"
               [(ngModel)]="form.deadline"
               required
-              minlength="6"
               #deadline="ngModel"
             />
             <div class="alert-danger" *ngIf="deadline.errors && f.submitted">
-              <div *ngIf="deadline.errors.required">Password is required</div>
-              <div *ngIf="deadline.errors.minlength">
-                Password must be at least 6 characters
-              </div>
+              <div *ngIf="deadline.errors">Devi specificare un termine</div>
             </div>
           </div>
+
           <div class="form-group">
-            <button class="btn btn-primary btn-block">Lancia la sfida</button>
+            <button class="btn btn-primary btn-block">Lancia Sfida</button>
           </div>
 
           <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-            Signup failed!<br />{{ errorMessage }}
+            Inserimento sfida fallito!<br />{{ errorMessage }}
           </div>
         </form>
 
         <div class="alert alert-success" *ngIf="isSuccessful">
-          Your registration is successful!
+            Inserimento challenge eseguito
         </div>
       </div>
     </div>
