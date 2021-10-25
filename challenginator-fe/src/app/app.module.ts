@@ -17,6 +17,7 @@ import { ChallengeListComponent } from './dashboard/challenge-list/challenge-lis
 import { ChallengeItemComponent } from './dashboard/challenge-list/challenge-item/challenge-item.component';
 import { InsertComponent } from './insert/insert.component';
 import { DetailsComponent } from './details/details.component';
+import { StatusbarComponent } from './dashboard/statusbar/statusbar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { DetailsComponent } from './details/details.component';
     ChallengeListComponent,
     ChallengeItemComponent,
     InsertComponent,
-    DetailsComponent
+    DetailsComponent,
+    StatusbarComponent,
+
   ],
   imports: [
     BrowserModule,

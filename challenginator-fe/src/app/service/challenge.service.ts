@@ -26,6 +26,10 @@ export class ChallengeService {
     return this.http.get<Challenge[]>(this.apiUrl);
   }
 
+  getChallengeById(challengeId: number):Observable<Challenge>{
+    return this.http.get<Challenge>(this.apiUrl + challengeId);
+  }
+
   getChallengeToEvaluate(): Observable<Challenge[]> {
     return this.http.get<Challenge[]>(this.apiUrl+"evaluate");
   }
