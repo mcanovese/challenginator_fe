@@ -26,7 +26,7 @@
           role="alert"
           *ngIf="email.errors && f.submitted"
         >
-          Email is required!
+          Email obbligatoria
         </div>
       </div>
 
@@ -46,9 +46,9 @@
           role="alert"
           *ngIf="password.errors && f.submitted"
         >
-          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.required">Password obbligatoria</div>
           <div *ngIf="password.errors.minlength">
-            Password must be at least 6 characters
+            La password deve avere al massimo 6 caratteri
           </div>
         </div>
       </div>
@@ -62,13 +62,13 @@
           role="alert"
           *ngIf="f.submitted && isLoginFailed"
         >
-          Login failed {{ errorMessage }}
+          Login fallito {{ errorMessage }}
         </div>
       </div>
     </form>
 
     <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in successfully.
+      Login effettuato
     </div>
   </div>
   </div>

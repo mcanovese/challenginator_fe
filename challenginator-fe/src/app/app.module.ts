@@ -9,7 +9,6 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -25,7 +24,6 @@ import { StatusbarComponent } from './dashboard/statusbar/statusbar.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent,
     DashboardComponent,
     ChallengeListComponent,
     ChallengeItemComponent,

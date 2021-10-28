@@ -1,8 +1,8 @@
 <div class="col mb-4">
 
-  <div class="card-header bg-transparent border-dark" >Sfida del {{challengeItem.timestamp_creation}} #ID {{challengeItem.id}}</div>
+  <div class="card-header bg-transparent border-dark" >Sfida <b>#{{challengeItem.id}}</b> tra <b>{{ challengerData.name }} {{ challengerData.surname }}</b> e <b>{{ challengedData.name }} {{ challengedData.surname }}</b>   </div>
   <div class="card-body text-dark">
-    <h5 class="card-title" >  {{ challengeItem.title }}</h5>
+    <h4 class="card-title" >  {{ challengeItem.title }}</h4>
 
     <p class="card-text">{{ challengeItem.description }}</p>
   </div>
@@ -22,7 +22,8 @@
     </div>
 
      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'EVALUATING'">
-       <span class="badge bg-warning text-dark">Valutazione in corso</span>
+       <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id" >Visualizza</button>
+       <p class="badge bg-warning text-dark">Valutazione in corso</p>
      </div>
 
      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'REFUSED'">
@@ -39,12 +40,14 @@
     <div *ngIf="challengeType=='outcoming'">
 
       <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'PENDING'">
-        <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id">View Details</button>
+        <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id">Visualizza</button>
         <button type="button" class="btn btn-danger bg-danger" (click)="delete()">Cancella</button>
+        <p class="badge bg-warning text-dark">In attesa</p>
       </div>
 
     <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'ACCEPTED'">
       <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id">Visualizza</button>
+      <p class="badge bg-warning text-dark">Sfida in corso</p>
     </div>
 
 
@@ -60,10 +63,6 @@
           <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id">Visualizza</button>
           Valutazione in corso
         </div>
-
-
-
-
       </div>
 
       <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'REFUSED'">
@@ -71,6 +70,7 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'TERMINATED'">
+        <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id" >Visualizza</button>
         <p *ngIf="challengeItem.result == 'SUCCESS'"><span class="badge bg-success">Terminata con Successo</span></p>
         <p *ngIf="challengeItem.result == 'GIVEUP'"><span class="badge bg-warning text-dark">Sfidante Arreso</span></p>
         <p *ngIf="challengeItem.result == 'FAIL'"><span class="badge bg-dark">Sfida Fallita</span></p>
@@ -83,23 +83,24 @@
 
 
       <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'EVALUATING'">
-        <button type="button" class="btn btn-primary">Visualizza</button>
+        <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id" >Visualizza</button>
         <button type="button" class="btn btn-secondary" (click)="evaluateSuccess()">Successo</button>
         <button type="button" class="btn btn-secondary" (click)="evaluateFail()">Fallimento</button>
       </div>
 
-      <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'PENDING' || 'ACCEPTED'">
-
+      <div class="d-grid gap-2 d-md-flex " *ngIf=" challengeItem.status == 'ACCEPTED' || challengeItem.status == 'PENDING'">
         <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id">Visualizza</button>
+        <p class="badge bg-warning text-dark">In corso</p>
       </div>
 
 
-
       <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'TERMINATED'">
+        <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id" >Visualizza</button>
         <p *ngIf="challengeItem.result == 'SUCCESS'"><span class="badge bg-success">Terminata con Successo</span></p>
         <p *ngIf="challengeItem.result == 'GIVEUP'"><span class="badge bg-warning text-dark">Sfidante Arreso</span></p>
         <p *ngIf="challengeItem.result == 'FAIL'"><span class="badge bg-dark">Sfida Fallita</span></p>
       </div>
+
     </div>
   </div>
 </div>

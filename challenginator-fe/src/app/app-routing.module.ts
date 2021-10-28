@@ -4,19 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
-import {ProfileComponent} from "./profile/profile.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {InsertComponent} from "./insert/insert.component";
 import {DetailsComponent} from "./details/details.component";
+import {AuthenticationGuard} from "./_services/authentication.guard";
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user', component: ProfileComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'insert', component: InsertComponent},
-  {path: 'details/:challengeId', component: DetailsComponent}
+  {path: 'dashboard', canActivate:[AuthenticationGuard], component: DashboardComponent},
+  {path: 'insert', canActivate:[AuthenticationGuard], component: InsertComponent},
+  {path: 'details/:challengeId',  canActivate:[AuthenticationGuard],component: DetailsComponent}
   ];
 
 @NgModule({

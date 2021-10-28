@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import {AuthService} from "./auth.service";
+import {Observable} from "rxjs";
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -9,7 +11,7 @@ const USER_ID = 'user-id';
 })
 export class TokenStorageService {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   signOut(): void {
     window.sessionStorage.clear();
@@ -43,4 +45,11 @@ export class TokenStorageService {
     }
     return {};
   }
+
+  public isLoggedIn(): Boolean{
+    if(window.sessionStorage.getItem(TOKEN_KEY)) return true;
+    else return false;
+  }
+
+
 }

@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Challenge} from "../../../model/challenge.model";
 import {ChallengeService} from "../../../service/challenge.service";
 import {waitForAsync} from "@angular/core/testing";
+import {UserService} from "../../../_services/user.service";
+import {JsonObject} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 
 @Component({
   selector: 'app-challenge-item',
@@ -13,15 +15,23 @@ export class ChallengeItemComponent implements OnInit {
 
   @Input() challengeItem!: Challenge ;
   @Output("loadAllList") loadAllList: EventEmitter<any> = new EventEmitter();
+  userList:any[] = [];
+
+  challengedData: any;
+  challengerData: any;
+
 
   // suddivisione del tipo incoming/outcoming/evaluating
   @Input() challengeType : String|undefined;
   userId: string|null = window.sessionStorage.getItem("user-id");
 
 
-   constructor (private challengeService:ChallengeService) {}
+   constructor (private challengeService:ChallengeService, private userService:UserService) {}
 
    ngOnInit(): void {
+     this.userList = this.userService.getUserList();
+     this.challengedData = this.userList.find(element=>element.id.toString() == this.challengeItem.challenged.toString());
+     this.challengerData = this.userList.find(element=>element.id.toString() == this.challengeItem.challenger.toString());
    }
 
   // l'utente accetta la sfida

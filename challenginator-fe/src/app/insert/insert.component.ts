@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import { ReactiveFormsModule} from "@angular/forms";
 import {ChallengeService} from "../service/challenge.service";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-insert',
@@ -9,6 +10,9 @@ import {ChallengeService} from "../service/challenge.service";
   styleUrls: ['./insert.component.css']
 })
 export class InsertComponent implements OnInit {
+
+  userlist: any[] = [];
+  userId: string|null = window.sessionStorage.getItem("user-id");
 
   form: any = {
     challenged: null,
@@ -21,9 +25,10 @@ export class InsertComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private challengeService: ChallengeService) { }
+  constructor(private challengeService: ChallengeService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.loadUserList();
   }
 
   onSubmit(): void{
@@ -44,13 +49,21 @@ export class InsertComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
-
-
   }
 
+  //carico dati per la select tranne quello mio
+  loadUserList(): void {
+    this.userService.getListUser().subscribe(
+      data=>{
+        this.userlist = data.filter((data: { id: string | null; }) => data.id != this.userId);
+      },
+      error => {
+        console.log ("error in get data user");
+      }
 
+    )
 
-
+  }
 
 
 }

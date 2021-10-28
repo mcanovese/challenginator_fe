@@ -2,6 +2,8 @@ import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {Challenge} from "../../model/challenge.model";
 import {ChallengeService} from "../../service/challenge.service";
 import {waitForAsync} from "@angular/core/testing";
+import {UserService} from "../../_services/user.service";
+import {filter} from "rxjs/operators";
 
 
 @Component({
@@ -18,13 +20,14 @@ import {waitForAsync} from "@angular/core/testing";
     challengeList:Challenge[] = [];
 
 
-  constructor(private challengeService: ChallengeService) {}
+  constructor(private challengeService: ChallengeService, private userService: UserService) {}
 
 
   ngOnInit(): void {
     if(this.challengeType == 'incoming')   this.loadChallengeIncoming();
     if(this.challengeType == 'outcoming') this.loadChallengeOutcoming();
     if(this.challengeType == 'evaluate')  this.loadChallengeToEvaluate();
+    this.getName();
   }
 
 
@@ -56,6 +59,18 @@ import {waitForAsync} from "@angular/core/testing";
       this.challengeList = challenges.filter(element=>
       element.challenger.toString() != this.userId);
     })
+  }
+
+  getName(): void {
+    this.userService.getListUser().subscribe(
+      data=>{
+
+      },
+      error=>{
+        console.log("error fetch data");
+      }
+    );
+
   }
 
 
