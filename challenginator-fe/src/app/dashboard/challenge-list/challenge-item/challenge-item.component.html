@@ -1,5 +1,4 @@
-<div class="col mb-4">
-
+<div class="col mb-4" >
   <div class="card-header bg-transparent border-dark" >Sfida <b>#{{challengeItem.id}}</b> tra <b>{{ challengerData.name }} {{ challengerData.surname }}</b> e <b>{{ challengedData.name }} {{ challengedData.surname }}</b>   </div>
   <div class="card-body text-dark">
     <h4 class="card-title" >  {{ challengeItem.title }}</h4>
@@ -17,8 +16,8 @@
 
     <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'ACCEPTED'">
       <button type="button" class="btn btn-primary" [routerLink]="'../details/'+challengeItem.id" >Visualizza</button><br>
-      <button type="button" class="btn btn-primary" (click)="giveUp()">Arrenditi</button><br>
-      <button type="button" class="btn btn-primary" (click)="completeChallenge()" >Ho finito</button><br>
+      <button type="button" class="btn btn-danger" (click)="giveUp()">Arrenditi</button><br>
+      <button type="button" class="btn btn-success" (click)="completeChallenge()" >Ho finito</button><br>
     </div>
 
      <div class="d-grid gap-2 d-md-flex " *ngIf="challengeItem.status == 'EVALUATING'">

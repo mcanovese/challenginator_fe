@@ -27,7 +27,6 @@ import {filter} from "rxjs/operators";
     if(this.challengeType == 'incoming')   this.loadChallengeIncoming();
     if(this.challengeType == 'outcoming') this.loadChallengeOutcoming();
     if(this.challengeType == 'evaluate')  this.loadChallengeToEvaluate();
-    this.getName();
   }
 
 
@@ -38,14 +37,15 @@ import {filter} from "rxjs/operators";
     if (this.challengeType == 'evaluate') this.loadChallengeToEvaluate();
   }
 
-
+  //carica le liste delle sfide ricevute dall'utente
   loadChallengeIncoming() {
     this.challengeService.getChallenge().subscribe((challenges) =>{
       this.challengeList = challenges.filter(element=>
-        element.challenger.toString() != this.userId);
+        element.challenger.toString() != this.userId && element.status != 'TERMINATED');
     })
   }
 
+  // carica le liste delle sfide inviate
   loadChallengeOutcoming() {
     this.challengeService.getChallenge().subscribe((challenges) =>{
       this.challengeList = challenges.filter(element=>
@@ -53,24 +53,12 @@ import {filter} from "rxjs/operators";
     })
   }
 
-
+  // carica le liste delle sfide da valutare
   loadChallengeToEvaluate() {
     this.challengeService.getChallengeToEvaluate().subscribe((challenges) =>{
       this.challengeList = challenges.filter(element=>
       element.challenger.toString() != this.userId);
     })
-  }
-
-  getName(): void {
-    this.userService.getListUser().subscribe(
-      data=>{
-
-      },
-      error=>{
-        console.log("error fetch data");
-      }
-    );
-
   }
 
 

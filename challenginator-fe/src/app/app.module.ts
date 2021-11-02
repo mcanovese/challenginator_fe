@@ -17,6 +17,7 @@ import { ChallengeItemComponent } from './dashboard/challenge-list/challenge-ite
 import { InsertComponent } from './insert/insert.component';
 import { DetailsComponent } from './details/details.component';
 import { StatusbarComponent } from './dashboard/statusbar/statusbar.component';
+import { HistoryComponent } from './dashboard/history/history.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { StatusbarComponent } from './dashboard/statusbar/statusbar.component';
     InsertComponent,
     DetailsComponent,
     StatusbarComponent,
+    HistoryComponent,
 
   ],
   imports: [
