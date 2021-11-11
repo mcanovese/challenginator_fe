@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-statusbar',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./statusbar.component.css']
 })
 export class StatusbarComponent implements OnInit {
+
+  faPlusCircle = faPlusCircle;
 
   constructor() { }
 

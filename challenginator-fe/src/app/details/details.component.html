@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col">
-      <div class="card">
+      <div class="card details">
         <div class="card-header">
           Titolo
         </div>
@@ -14,17 +14,13 @@
           <span *ngIf="challenge.status == 'TERMINATED' && challenge.result == 'SUCCESS'"><span class="badge rounded-pill bg-success text-dark">TERMINATA CON SUCCESSO</span></span>
           <span *ngIf="challenge.status == 'TERMINATED' && challenge.result != 'SUCCESS'"><span class="badge rounded-pill bg-danger text-dark">TERMINATA SENZA SUCCESSO</span></span>
 
-
         </div>
       </div>
-
     </div>
 
-
-
     <div class="col">
-      <div class="card">
-        <div class="card-header">
+      <div class="card details">
+        <div class="card-header ">
           Cronologia eventi
         </div>
         <div class="card-body">
@@ -33,15 +29,12 @@
               <b>Da:</b>  {{challengerData.name}} {{challengerData.surname}}
             </div>
             <div class="col" *ngIf="challenge.status != 'PENDING'"><h5>Sfida accettata il:</h5> <p class="card-title">{{acceptanteDate | date: 'dd-MM-yyyy HH:mm'}}</p>
-
-
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
+  </div>
 
     <div class="row">
       <div class="col">
@@ -60,9 +53,7 @@
       </div>
     </div>
 
-
     <div class="row">
-
       <div class="col-md">
         <div class="card">
           <div class="card-header">
@@ -76,8 +67,6 @@
           </div>
         </div>
       </div>
-
-
 
 
       <div class="col-md" *ngIf="challenge.status == 'ACCEPTED' && challenge.challenged.toString() == userId">
@@ -112,21 +101,6 @@
         </div>
       </div>
 
-
-
-
     </div>
-
-
-
-
-
-
-
   </div>
-
-
-
-</div>
-
 

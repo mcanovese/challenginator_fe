@@ -9,6 +9,7 @@ import {InsertComponent} from "./insert/insert.component";
 import {DetailsComponent} from "./details/details.component";
 import {AuthenticationGuard} from "./_services/authentication.guard";
 import {HistoryComponent} from "./dashboard/history/history.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -18,7 +19,9 @@ const routes: Routes = [
   {path: 'dashboard', canActivate:[AuthenticationGuard], component: DashboardComponent},
   {path: 'insert', canActivate:[AuthenticationGuard], component: InsertComponent},
   {path: 'details/:challengeId',  canActivate:[AuthenticationGuard],component: DetailsComponent},
-  {path: 'history', canActivate:[AuthenticationGuard], component:HistoryComponent}
+  {path: 'history', canActivate:[AuthenticationGuard], component:HistoryComponent},
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
   ];
 
 @NgModule({

@@ -4,6 +4,8 @@ import {ChallengeService} from "../../../service/challenge.service";
 import {waitForAsync} from "@angular/core/testing";
 import {UserService} from "../../../_services/user.service";
 import {JsonObject} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
+import { faEye, faTrashAlt, faCheckCircle, faPlusCircle} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-challenge-item',
@@ -12,13 +14,17 @@ import {JsonObject} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 })
 export class ChallengeItemComponent implements OnInit {
 
-
+  faEye = faEye;
+  faTrashAlt = faTrashAlt;
+  faCheckCircle = faCheckCircle;
+  faPlusCircle = faPlusCircle;
   @Input() challengeItem!: Challenge ;
   @Output("loadAllList") loadAllList: EventEmitter<any> = new EventEmitter();
   userList:any[] = [];
 
   challengedData: any;
   challengerData: any;
+
 
 
   // suddivisione del tipo incoming/outcoming/evaluating

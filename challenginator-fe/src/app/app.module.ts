@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { InsertComponent } from './insert/insert.component';
 import { DetailsComponent } from './details/details.component';
 import { StatusbarComponent } from './dashboard/statusbar/statusbar.component';
 import { HistoryComponent } from './dashboard/history/history.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HistoryComponent } from './dashboard/history/history.component';
     DetailsComponent,
     StatusbarComponent,
     HistoryComponent,
+    NotFoundComponent,
 
   ],
   imports: [
@@ -39,7 +41,8 @@ import { HistoryComponent } from './dashboard/history/history.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
