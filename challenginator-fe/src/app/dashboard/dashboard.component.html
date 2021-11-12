@@ -1,0 +1,10 @@
+<h1>Dashboard</h1>
+<app-statusbar></app-statusbar>
+<h3><fa-icon [icon]="faSignInAlt" size="1x"></fa-icon> Sei stato sfidato ...</h3>
+<app-challenge-list challengeType="incoming"></app-challenge-list>
+<h3><fa-icon [icon]="faSignOutAlt" size="1x"></fa-icon> Le sfide che hai lanciato</h3>
+<app-challenge-list challengeType="outcoming"></app-challenge-list>
+
+<h3><fa-icon [icon]="faBalanceScale" size="1x"></fa-icon> Sei giudice di ...</h3>
+<app-challenge-list challengeType="evaluate"></app-challenge-list>
+

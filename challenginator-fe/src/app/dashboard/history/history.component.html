@@ -1,0 +1,20 @@
+<h2>Storico Sfide</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Tipo sfida</th>
+    <th scope="col">Obiettivo</th>
+    <th scope="col">Esito</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr  *ngFor="let element of challengeList">
+    <th scope="row">{{element.id}}</th>
+    <td *ngIf="element.challenger.toString() == userId">Lanciata</td>
+    <td *ngIf="element.challenger.toString() != userId">Ricevuta</td>
+    <td>{{element.title}}</td>
+    <td>{{element.result}}</td>
+    <td><button type="button" class="btn btn-primary" [routerLink]="'../details/'+element.id">Visualizza</button></td>
+  </tr>

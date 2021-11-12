@@ -1,0 +1,106 @@
+<div class="container" *ngIf="challenge">
+  <div class="row">
+
+    <div class="col">
+      <div class="card details">
+        <div class="card-header">
+          Titolo
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{challenge.title}}</h3>
+          <span *ngIf="challenge.status == 'ACCEPTED'"><span class="badge rounded-pill bg-secondary">SFIDA ACCETTATA</span></span>
+          <span *ngIf="challenge.status == 'PENDING'"><span class="badge rounded-pill bg-warning text-dark">IN ATTESA</span></span>
+          <span *ngIf="challenge.status == 'EVALUATING'"><span class="badge rounded-pill bg-warning text-dark">COMPLETATA e VALUTABILE</span></span>
+          <span *ngIf="challenge.status == 'TERMINATED' && challenge.result == 'SUCCESS'"><span class="badge rounded-pill bg-success text-dark">TERMINATA CON SUCCESSO</span></span>
+          <span *ngIf="challenge.status == 'TERMINATED' && challenge.result != 'SUCCESS'"><span class="badge rounded-pill bg-danger text-dark">TERMINATA SENZA SUCCESSO</span></span>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card details">
+        <div class="card-header ">
+          Cronologia eventi
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col"><h5>Sfida lanciata il:</h5> <p class="card-title">{{creationDate | date: 'dd-MM-yyyy HH:mm'}}</p>
+              <b>Da:</b>  {{challengerData.name}} {{challengerData.surname}}
+            </div>
+            <div class="col" *ngIf="challenge.status != 'PENDING'"><h5>Sfida accettata il:</h5> <p class="card-title">{{acceptanteDate | date: 'dd-MM-yyyy HH:mm'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            Dettaglio
+          </div>
+          <div class="card-body">
+            {{challenge.description}}
+          </div>
+          <div class="card-footer bg-transparent ">
+            <span>Sfida da completare in:</span> {{challenge.deadline}} giorni
+            <p *ngIf="overtime" class="badge bg-warning text-dark">Deadline superata</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md">
+        <div class="card">
+          <div class="card-header">
+            Giudice della sfida
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col"><h5></h5> <p class="card-title">{{valutatorData.name}} {{valutatorData.surname}}</p> </div>
+              <div class="col" *ngIf="challenge.result == 'TERMINATED'"><h5>Valutazione</h5> <p class="card-title">{{challenge.result}}</p> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md" *ngIf="challenge.status == 'ACCEPTED' && challenge.challenged.toString() == userId">
+        <div class="card">
+          <div class="card-header">
+          Operazioni
+          </div>
+          <div class="card-body">
+          <div class="row">
+            <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-danger" (click)="giveUp()">Arrenditi</button><br>
+            <button type="button" class="btn btn-success" (click)="completeChallenge()" >Ho finito</button><br>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-md" *ngIf="challenge.status == 'ACCEPTED' && challenge.evaluator.toString() == userId">
+        <div class="card">
+          <div class="card-header">
+            La sfida è valutabile, assegna un risultato
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-success" (click)="evaluateSuccess()">Successo</button>
+                <button type="button" class="btn btn-danger" (click)="evaluateFail()">Fallimento</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+

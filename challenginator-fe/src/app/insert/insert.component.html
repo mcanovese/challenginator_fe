@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="login-form bg-light mt-4 p-4">
+        <h2>Inserimento Challenge</h2>
+        <form
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate
+        >
+          <div class="form-group">
+            <label for="challenged">Sfidato</label>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example"     #challenged="ngModel"  name="challenged"
+                    id="challenged"
+                    [(ngModel)]="form.challenged">
+              <option default selected disabled >Seleziona uno sfidante</option>
+              <option *ngFor="let user of userlist" value="{{user.id}}" >{{user.name}} {{user.surname}}</option>
+
+            </select>
+            <div class="alert-danger" *ngIf="challenged.errors && f.submitted">
+              <div *ngIf="challenged.errors">Seleziona uno sfidante </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Titolo - Obiettivo</label>
+            <input
+              type="text"
+              class="form-control"
+              name="title"
+              id="title"
+              [(ngModel)]="form.title"
+              required
+              minlength="3"
+              maxlength="20"
+              #title="ngModel"
+            />
+            <div class="alert-danger" *ngIf="title.errors && f.submitted">
+              <div *ngIf="title.errors">Inserisci un titolo</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Descrizione</label>
+            <input
+              type="text"
+              class="form-control"
+              name="description"
+              id="description"
+              [(ngModel)]="form.description"
+              required
+              #description="ngModel"
+            />
+            <div class="alert-danger" *ngIf="description.errors && f.submitted">
+              <div *ngIf="description.errors">Description is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="deadline">Giorni per finire</label>
+            <input
+              type="text"
+              class="form-control"
+              name="deadline"
+              id ="deadline"
+              [(ngModel)]="form.deadline"
+              required
+              #deadline="ngModel"
+            />
+            <div class="alert-danger" *ngIf="deadline.errors && f.submitted">
+              <div *ngIf="deadline.errors">Devi specificare un termine</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary btn-block">Lancia Sfida</button>
+          </div>
+
+          <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Inserimento sfida fallito!<br />{{ errorMessage }}
+          </div>
+        </form>
+
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            Inserimento challenge eseguito
+        </div>
+      </div>
+    </div>
+  </div>

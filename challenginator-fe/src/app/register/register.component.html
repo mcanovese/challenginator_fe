@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="login-form bg-light mt-4 p-4">
+  <h2>Sign Up</h2>
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          [(ngModel)]="form.name"
+          required
+          minlength="3"
+          maxlength="20"
+          #name="ngModel"
+        />
+        <div class="alert-danger" *ngIf="name.errors && f.submitted">
+          <div *ngIf="name.errors.name">Il nome è richiesto</div>
+          <div *ngIf="name.errors.name">
+            Il nome deve contenere almeno 3 caratteri
+          </div>
+          <div *ngIf="name.errors.maxlength">
+            Massimo 20 caratteri per il nome
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="surname">Cognome</label>
+        <input
+          type="text"
+          class="form-control"
+          name="surname"
+          id="surname"
+          [(ngModel)]="form.surname"
+          required
+          minlength="3"
+          maxlength="20"
+          #surname="ngModel"
+        />
+        <div class="alert-danger" *ngIf="surname.errors && f.submitted">
+          <div *ngIf="surname.errors.name">Cognome è un campo richieto</div>
+          <div *ngIf="surname.errors.name">
+            Il cognome deve contenere almeno 3 caratteri
+          </div>
+          <div *ngIf="surname.errors.maxlength">
+            Il cognome può contenere massimo 20 caratteri
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          [(ngModel)]="form.email"
+          required
+          email
+          #email="ngModel"
+        />
+        <div class="alert-danger" *ngIf="email.errors && f.submitted">
+          <div *ngIf="email.errors.required">Email è un campo richiesto</div>
+          <div *ngIf="email.errors.email">
+            Devi inserire una email valida
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <div class="alert-danger" *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors.required">Password è un campo obbligatorio</div>
+          <div *ngIf="password.errors.minlength">
+            Password deve contenere al minimo 6 caratteri
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Sign Up</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+  </div>
+</div>
+  </div>

@@ -1,0 +1,16 @@
+<div class="row row-cols-3 " >
+
+    <div class="alert alert-primary" role="alert" *ngIf="!challengeList[0]">
+      Nessuna sfida da mostrare qui.
+    </div>
+
+
+  <div *ngFor="let challenge of challengeList">
+    <div class="card border-dark mb-3 " style="max-width: 30rem;">
+  <app-challenge-item (loadAllList)="loadAllList()" [challengeItem] = "challenge"  [challengeType]="challengeType">
+  </app-challenge-item>
+      </div>
+  </div>
+</div>
+
+
